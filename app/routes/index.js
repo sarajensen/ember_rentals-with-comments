@@ -1,31 +1,18 @@
 import Ember from 'ember';
 
-var rentals = [{
-  id: 1,
-  owner: "Veruca Salt",
-  city: "San Francisco",
-  type: "Estate",
-  bedrooms: 15,
-  image: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Crane_estate_(5).jpg"
-},{
-  id: 2,
-  owner: "Mike TV",
-  city: "Seattle",
-  type: "Condo",
-  bedrooms: 1,
-  image: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Alfonso_13_Highrise_Tegucigalpa.jpg"
-}, {
-  id: 3,
-  owner: "Violet Beauregarde",
-  city: "Portland",
-  type: "Apartment",
-  bedrooms: 3,
-  image: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Wheeldon_Apartment_Building_-_Portland_Oregon.jpg"
-}];
-
 export default Ember.Route.extend({
-  // 'model' means 'function()' in Ember. Methods within an Ember class is called a 'model hook'. Model data in a route handler is available to templates and components
+  // 'model' means 'function' in Ember. Methods within an Ember class is called a 'model hook'. Model data in a route handler is available to templates and components
   model() {
-    return rentals;
+    // Here we specify this.store to refer to the firebase data store we've set up for our app. Then the findAll method with the argument 'rental' instructs emberdata to find all records of the type rental in the store, and return them to our app. .store and .findAll methods 'understand' pluralization, or that your database store's name will be plural, but that you want all instances of the objects stored in your store.
+    return this.store.findAll('rental');
   },
+  actions: {
+    // this action is first requested in our rental-tile component. It is referenced in our index.hbs template, and defined here for use in our app.
+    destroyRental(rental) {
+      //destroyRecord is a pre-named ember funtion that instantly updates the info w/out the deleted record.
+      rental.destroyRecord();
+      //this is saying to the router: Hey reload this page without the erased object from the model.
+      this.transitionTo('index');
+    }
+  }
 });

@@ -1,0 +1,14 @@
+<li>
+  <!-- The properties of the Rental object are generally made available via index.js's model (that grabs our objects from firebase). Specifically, rental objects get here through the rental=rental argument in the component reference to rental tile in index.hbs. -->
+  {{rental.owner}}'s {{rental.type}} in {{rental.city}}.
+  <!-- the if statement refers to the property of the component object in rental-tile.js. This phrase means 'if isImageShowing is true, display the images, and let the image be clickable to trigger imageHide. If isImageShowing is false, show a button that can trigger imageShow' -->
+  {{#if isImageShowing}}
+    <p><img src={{rental.image}} alt={{rental.type}} {{action 'imageHide'}}></p>
+  {{else}}
+    <!-- this button triggers the action (a property of the rental-tile route handler object) imageShow. -->
+    <button {{action 'imageShow'}}>Show Image</button>
+  <!-- gotsta close that if statement like so. -->
+  {{/if}}
+  <!-- this button goes OUT of the conditional statement.  This button gets the action helper named DELETE which gets attached to the rental object information. -->
+  <button {{action 'delete' rental}}></button>
+</li>

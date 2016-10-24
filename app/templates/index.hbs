@@ -1,13 +1,14 @@
-<!--$ ember g route index - index.hbs does not require a link to router.js (notice that ember did not make one in the constructor when the index.hbs file was generated)   -->
+<!--ember g route index - index.hbs does not require a link to router.js (notice that ember did not make one in the constructor when the index.hbs file was generated)   -->
 
 <h1> Welcome to Super Rentals </h1>
 
 <h2>We hope you find exactly what you're looking for in a place to stay.</h2>
 
-<!-- to hook up the object literal information in the model (app/routes/index.js) one mush enter the code below:  Note: {{#each}} is an ember helper that alows one to loop through evert 'rental' object within the model using the model(){return rentals} function in index.js. #Each notation followed by 'model' signals to Ember that you're accessing the model hook in your route handler. In loop notation, the |info| in the bars must be an array or objects in a class. The var rentals in index.js is plural, and the rental in the bars is singular, per standard loop notation in ember.-->
+<!-- to hook up the object literal information in the model app/routes/index.js one mush enter the code below:  Note: each is an ember helper that alows one to loop through evert 'rental' object within the model using the model return rentals function in index.js. Each notation followed by 'model' signals to Ember that you're accessing the model hook in your route handler. In loop notation, the info in the bars must be an array or objects in a class. The var rentals in indexsjs is plural, and the rental in the bars is singular, per standard loop notation in ember.-->
 <ul>
   {{#each model as |rental|}}
-  <li>{{rental.owner}}'s{{rental.type}} in {{rental.city}}</li>
+    <!-- note: components are completely isolated from the model that holds all the information that needed to be sent to it.  Info must be passed in manually.  rentalEQUALSrental accomplishes this by sending rental info from the firebase model to the rental-tile js file to make the rental-tile hbs functional.  This happens through the HASHeach loop above.  The rental on the left of rentalEQUALSrental is the variable name that is used in the rental-tile component-->
+    {{rental-tile rental=rental destroyRental="destroyRental"}}
   {{/each}}
 </ul>
 
