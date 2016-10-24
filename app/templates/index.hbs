@@ -1,0 +1,15 @@
+<!--$ ember g route index - index.hbs does not require a link to router.js (notice that ember did not make one in the constructor when the index.hbs file was generated)   -->
+
+<h1> Welcome to Super Rentals </h1>
+
+<h2>We hope you find exactly what you're looking for in a place to stay.</h2>
+
+<!-- to hook up the object literal information in the model (app/routes/index.js) one mush enter the code below:  Note: {{#each}} is an ember helper that alows one to loop through evert 'rental' object within the model using the model(){return rentals} function in index.js. #Each notation followed by 'model' signals to Ember that you're accessing the model hook in your route handler. In loop notation, the |info| in the bars must be an array or objects in a class. The var rentals in index.js is plural, and the rental in the bars is singular, per standard loop notation in ember.-->
+<ul>
+  {{#each model as |rental|}}
+  <li>{{rental.owner}}'s{{rental.type}} in {{rental.city}}</li>
+  {{/each}}
+</ul>
+
+{{#link-to 'about'}}ABOUT{{/link-to}}
+{{#link-to 'contact'}}CONTACT{{/link-to}}
