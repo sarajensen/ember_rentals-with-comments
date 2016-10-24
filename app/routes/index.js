@@ -7,6 +7,11 @@ export default Ember.Route.extend({
     return this.store.findAll('rental');
   },
   actions: {
+    saveRental3(params) {
+      var newRental = this.store.createRecord('rental', params);
+      newRental.save();
+      this.transitionTo('index');
+    },
     // this action is first requested in our rental-tile component. It is referenced in our index.hbs template, and defined here for use in our app.
     destroyRental(rental) {
       //destroyRecord is a pre-named ember funtion that instantly updates the info w/out the deleted record.

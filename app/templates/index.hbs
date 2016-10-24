@@ -7,10 +7,13 @@
 <!-- to hook up the object literal information in the model app/routes/index.js one mush enter the code below:  Note: each is an ember helper that alows one to loop through evert 'rental' object within the model using the model return rentals function in index.js. Each notation followed by 'model' signals to Ember that you're accessing the model hook in your route handler. In loop notation, the info in the bars must be an array or objects in a class. The var rentals in indexsjs is plural, and the rental in the bars is singular, per standard loop notation in ember.-->
 <ul>
   {{#each model as |rental|}}
-    <!-- note: components are completely isolated from the model that holds all the information that needed to be sent to it.  Info must be passed in manually.  rentalEQUALSrental accomplishes this by sending rental info from the firebase model to the rental-tile js file to make the rental-tile hbs functional.  This happens through the HASHeach loop above.  The rental on the left of rentalEQUALSrental is the variable name that is used in the rental-tile component-->
+    <!-- note: components are completely isolated from the model that holds all the information that needed to be sent to it.  Info must be passed in manually.  rentalEQUALSrental accomplishes this by sending rental info from the firebase model to the rental-tile js file to make the rental-tile hbs functional.  This happens through the HASHeach loop above.  The rental on the left of rentalEQUALSrental is the variable name that is used in the rental-tile component. -->
+    <!-- destroyRental="destroyRental" comes from sendAction("detroyRental", rental) in rental-tile.js. Sent actions from components are referenced in the templates they are rendered in, and then the corresponding route handler must code the action that is indicated in the component for the action to execute.  -->
     {{rental-tile rental=rental destroyRental="destroyRental"}}
   {{/each}}
 </ul>
+<!-- This is a new component.  The same rules as the one above generally apply. saveRental1 is the name of the saveRental2 is a variable that sets the name of the saving action on the route, saveRental3. saveRental3 will be the name of an action in index.js, our main route handler. -->
+{{new-rental saveRental2="saveRental3"}}
 
 {{#link-to 'about'}}ABOUT{{/link-to}}
 {{#link-to 'contact'}}CONTACT{{/link-to}}

@@ -1,0 +1,36 @@
+{{#if addNewRental}}
+<h1>New Rental</h1>
+<div>
+  <form>
+    <div class="form-group">
+      <label for="owner">Owner</label>
+      {{input value=owner id="owner"}}
+    </div>
+
+    <div class="form-group">
+      <label for="type">Type</label>
+      {{input value=type id="type"}}
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      {{input value=city id="city"}}
+    </div>
+
+    <div class="form-group">
+      <label for="bedrooms">Number of Bedrooms</label>
+      {{input value=bedrooms id="bedrooms"}}
+    </div>
+
+    <div class="form-group">
+      <label for="image">Image URL</label>
+      {{input value=image id="image"}}
+    </div>
+
+    <!-- saveRental1 is a variable that indicates to our new-rental.js file that we need to define an action that will .sendAction to our template, index.hbs. saveRental1 is a function that saves the form inputs in an object format into a var called params. In a .sendAction to our template, we then define a new function name called saveRental2, and send the argument params to our template, index.hbs. -->
+    <button {{action 'saveRental1'}}>Save</button>
+  </form>
+</div>
+{{else}}
+  <button {{action 'rentalFormShow'}}>New Rental</button>
+{{/if}}
