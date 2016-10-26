@@ -10,11 +10,11 @@ export default Ember.Component.extend({
     imageHide: function() {
       this.set('isImageShowing', false);
     },
-    // This action is sent UP from update-rental.js...and it's on it's merry way to be coded in index.js. 
+    // This action is sent UP from update-rental.js...and it's on it's merry way to be coded in index.js.
     update(rental, params) {
       this.sendAction('update', rental, params);
     },
-    //this is the function that makes the delete button work.  sendAction and destroyRental will be connected to index.hbs .
+    // Delete action is referenced in rental-tile.hbs, and sent up one level to index.js. Index.js codes the delete function since that's where we interact with our database.
     delete(rental) {
       if (confirm('Are you sure you want to delete this rental?')) {
         //sendAction is a pre-written ember function that passes the function "destroyRental" with the rental argument, which is then made available to our template, index.hbs. The index.hbs reference to this sent action can then be accessed by index.js, which will code the action for us to use here. sendAction is like EventEmitter.

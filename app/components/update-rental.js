@@ -8,18 +8,19 @@ export default Ember.Component.extend({
     updateRentalForm() {
       this.set('updateRentalForm', true);
     },
+    // params match the properties in our rental objects in our database. These values are sent up through the sendAction function (That's referenced in update-rental.hbs, then index.hbs, then coded in index.js, since this component is still in the index route.).
+    // DON'T FORGET that these params use : not = to have values assigned. 
     update(rental) {
-      // params match the properties in our rental objects in our database. These values are sent up through the .sendAction function (That's referenced in update-rental.hbs, then index.hbs, then coded in index.js, since this component is still in the index route.).
       var params = {
-        owner = this.get('owner'),
-        city = this.get('city'),
-        type = this.get('type'),
-        image = this.get('image'),
-        bedrooms = this.get('bedrooms'),
+        owner: this.get('owner'),
+        city: this.get('city'),
+        type: this.get('type'),
+        image: this.get('image'),
+        bedrooms: this.get('bedrooms'),
       };
       // toggles form off
       this.set('updateRentalForm', false);
-      // sends the update action up one level, to update-rental.hbs with the rental object we will alter, and the new params we gathered. WE HAVE TO SEND THIS ACTION AGAIN IN RENTAL-TILE.js up to INDEX.js. 
+      // sends the update action up one level, to update-rental.hbs with the rental object we will alter, and the new params we gathered. WE HAVE TO SEND THIS ACTION AGAIN IN RENTAL-TILE.js up to INDEX.js.
       this.sendAction('update', rental, params);
     }
   }

@@ -10,8 +10,8 @@
 
     <!-- rental=rental: components don't have it's parents data by default, it must be passed in. are completely isolated from the model that holds all the information that needed to be sent to it.  Info must be passed in manually. rental(1) is the variable name for the data in the component and rental(2) represents data from the firebase model grabbed from the loop, |rental|.-->
     <!-- destroyRental="destroyRental" comes from sendAction("detroyRental", rental) in rental-tile.js. Sent actions from components are referenced in the templates they are rendered in, and then the corresponding route handler (index.js) must code the action that is indicated in the component for the action to execute.  -->
-    <!-- P.S. the update-rental component is nested in rental-tile. -->
-    {{rental-tile rental=rental destroyRental="destroyRental"}}
+    <!-- update="update" comes from a sendAction from update-rental, that was then sent to rental-tile, which now shows up here in index. P.S. the update-rental component is nested in rental-tile. -->
+    {{rental-tile rental=rental update="update" destroyRental="destroyRental"}}
   {{/each}}
 </ul>
 
