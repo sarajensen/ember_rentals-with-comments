@@ -9,8 +9,4 @@
     <button {{action 'imageShow'}}>Show Image</button>
   <!-- gotsta close that if statement like so. -->
   {{/if}}
-  <!-- update-rental refers to the nested component, rental=rental sends data down into the component (since we're technically still in the forloop in index.hbs!!), and update="update" refers to the update action we're trying to send up to index.js.  -->
-  {{update-rental rental=rental update="update"}}
-  <!-- this button goes OUT of the conditional statement.  This button gets the action helper named DELETE which gets attached to the rental object information. -->
-  <button {{action 'delete' rental}}>Delete Rental</button>
 </li>
