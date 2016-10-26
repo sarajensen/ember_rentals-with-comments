@@ -9,7 +9,7 @@ export default Ember.Component.extend({
       this.set('updateRentalForm', true);
     },
     // params match the properties in our rental objects in our database. These values are sent up through the sendAction function (That's referenced in update-rental.hbs, then index.hbs, then coded in index.js, since this component is still in the index route.).
-    // DON'T FORGET that these params use : not = to have values assigned. 
+    // DON'T FORGET that these params use : not = to have values assigned.
     update(rental) {
       var params = {
         owner: this.get('owner'),

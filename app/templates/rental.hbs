@@ -1,5 +1,9 @@
 <!-- Route.js's model hook retrieves individiual rental objects from the database based on the url input which translates to the rental id. This way, you can call the object property on model directly. I guess it's not rental.owner (like we're used to). Even though model is a function, its return is an object, so you can treat model like an object in this setting. -->
 <h2>More information about {{model.owner}}'s {{model.type}}</h2>
 <!-- update-rental refers to the nested component, rental=model sends data down into the component, and update="update" refers to the update action we're trying to send up to index.js.  -->
-{{update-rental rental=model update="update"}}<!-- rental route is rendering the rental-detail component, and it's getting the model data passed into it. For consistency, the rental-detail data will be called rental, same as our other components' data. -->
+<!-- update="update" comes from a sendAction from update-rental. -->
+{{update-rental rental=model update="update"}}
+
+<!-- rental route is rendering the rental-detail component, and it's getting the model data passed into it. For consistency, the rental-detail data will be called rental, same as our other components' data. -->
+<!-- destroyRental="destroyRental" comes from sendAction("detroyRental", rental) in rental-details.js. Sent actions from components are referenced in the templates they are rendered in, and then the corresponding route handler (index.js) must code the action that is indicated in the component for the action to execute.  -->
 {{rental-detail rental=model destroyRental="destroyRental"}}
