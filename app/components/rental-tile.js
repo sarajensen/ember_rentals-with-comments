@@ -10,6 +10,10 @@ export default Ember.Component.extend({
     imageHide: function() {
       this.set('isImageShowing', false);
     },
+    // This action is sent UP from update-rental.js...and it's on it's merry way to be coded in index.js. 
+    update(rental, params) {
+      this.sendAction('update', rental, params);
+    },
     //this is the function that makes the delete button work.  sendAction and destroyRental will be connected to index.hbs .
     delete(rental) {
       if (confirm('Are you sure you want to delete this rental?')) {

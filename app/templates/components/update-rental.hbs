@@ -1,0 +1,34 @@
+<!-- updateRentalForm represents a property that is added using the Update function in update-rental.js. If an action happens locally I guess you can use the local .js file to do the action? If an action in a component affects more than just that component, it needs to get sent up to the route handler. If updateRentalForm is true, that makes the form viewable. If it's false hides it from view. -->
+{{#if updateRentalForm}}
+  <h4>Update {{rental.owner}}'s {{rental.type}}</h4>
+  <div>
+    <form>
+      <div class="form-group">
+        <label for="owner">Owner</label>
+        <!-- Ember's input helper is helping. Value should match params hash and object properties, id matches value. -->
+        {{input value=owner id="owner" placeholder=rental.type}}
+      </div>
+      <div class="form-group">
+        <label for="type">Type</label>
+        {{input value=type id="type" placeholder=rental.type}}
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        {{input value=city id="city" placeholder=rental.city}}
+      </div>
+      <div class="form-group">
+        <label for="bedrooms">Bedrooms</label>
+        {{input value=bedrooms id="bedrooms"}} placeholder=rental.bedrooms}}
+      </div>
+      <div class="form-group">
+        <label for="image">Image URL</label>
+        {{input value=image id="image" placeholder=rental.image}}
+      </div>
+      <!-- action 'update' is bound to the button, and represents the update action in update-rental.js and the rental info passed in as an argument to update. Update is HERE to be made available for the template (index.hbs) to grab and send to the route handler index.js to save the updated info to the database. And set updateRentalForm to false. -->
+      <button {{action 'update' rental}}>Save</button>
+    </form>
+  </div>
+{{else}}
+  <!-- this action updateRentalForm sets the updateRentalForm property to true. This particular action only affect the component, so in the action, there is NO .sendAction needed. -->
+  <button {{action 'updateRentalForm'}}>Update</button>
+{{/if}}
