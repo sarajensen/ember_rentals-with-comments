@@ -9,16 +9,16 @@ export default Ember.Route.extend({
   actions: {
     update(rental, params) {
       // For each key in the params,
-      // if it is NOT undefined,
-      // take the rental and set the property that matches the current key, to the value of the current key,
-      // after looping through all of the keys, save the rental,
-      // transition to the index route.
       Object.keys(params).forEach(function(key) {
+        // if it is NOT undefined,
         if(params[key]!==undefined) {
+          // take the rental and set the property that matches the current key, to the value of the current key,
           rental.set(key,params[key]);
         }
       });
+      // after looping through all of the keys, save the rental,
       rental.save();
+      // transition to the index route.
       this.transitionTo('index');
     },
     // destroyRental is first requested in our rental-tile component. It is referenced in our index.hbs template, and defined here for use in our app. Now that we have reviews, too, we need to make sure to delete reviews in our model that are associated with the deleted rental.
