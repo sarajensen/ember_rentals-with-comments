@@ -8,6 +8,9 @@ export default Ember.Component.extend({
         //sendAction is a pre-written ember function that passes the function "destroyRental" with the rental argument, which is then made available to our template, index.hbs. The index.hbs reference to this sent action can then be accessed by index.js, which will code the action for us to use here. sendAction is like EventEmitter.
         this.sendAction('destroyRental', rental);
       }
+    },
+    destroyReview(review) {
+      this.sendAction('destroyReview', review);
     }
   }
 });

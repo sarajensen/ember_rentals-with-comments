@@ -21,11 +21,17 @@ export default Ember.Route.extend({
       rental.save();
       this.transitionTo('index');
     },
-    // destroyRental is first requested in our rental-tile component. It is referenced in our index.hbs template, and defined here for use in our app.
+    // destroyRental is first requested in our rental-tile component. It is referenced in our index.hbs template, and defined here for use in our app. Now that we have reviews, too, we need to make sure to delete reviews in our model that are associated with the deleted rental.
     destroyRental(rental) {
-      //destroyRecord is a pre-named ember funtion that instantly updates the info w/out the deleted record.
-      rental.destroyRecord();
-      //this is saying to the router: Hey reload this page without the erased object from the model.
+      // review_deletions iterates over all rental's reviews, destroying them one by one.
+      var review_deletions = rental.get('reviews').map(function(review) {
+        return review.destroyRecord();
+      });
+      // RSVP waits (packages multiple rental_deletions promises into one) until all reviews are deleted, then destroys the rental.
+      Ember.RSVP.all(review_deletions).then(function() {
+        return rental.destroyRecord();
+      });
+      // then we reload the page with updated model data.
       this.transitionTo('index');
     },
     // this function saves a review to our DS, and it also saves a review by updating the rental object in our database with the review saved to it. We then have to go "back" to our current page with the new rental object in it.
@@ -42,6 +48,12 @@ export default Ember.Route.extend({
       });
       // Afterwards, take us to the page displaying details for "rental".
       this.transitionTo('rental', rental);
+    },
+    destroyReview(review) {
+      //destroyRecord is a pre-named ember funtion that instantly updates the info w/out the deleted record.
+      review.destroyRecord();
+      //this is saying to the router: Hey reload this page without the erased object from the model.
+      this.transitionTo('index');
     }
   }
 });
