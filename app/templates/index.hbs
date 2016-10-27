@@ -20,14 +20,12 @@ We hope you find exactly what you're looking for in a place to stay.
 <h2>All Reviews</h2>
 
 <ul>
-  <!-- Another loop specifiying which data we want to use to display stuff, and passing it into the new-review component.-->
   {{#each model.reviews as |review|}}
     <li>{{review.rating}} - {{review.content}} - by {{review.author}}</li>
   {{/each}}
 </ul>
 
-<!-- New review component will show an Add Review button by default, and a form if that button is clicked. Save button in the form triggers action saveReview, which saves input, that then gets sent to index.js in its very own "saveReview" action. -->
-{{new-review saveReview="saveReview"}}
+<hr>
 
-{{#link-to 'about'}}ABOUT{{/link-to}}
-{{#link-to 'contact'}}CONTACT{{/link-to}}
+{{#link-to 'about'}}About{{/link-to}} |
+{{#link-to 'contact'}}Click here to contact us.{{/link-to}}

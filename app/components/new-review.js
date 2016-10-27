@@ -12,6 +12,8 @@ export default Ember.Component.extend({
         author: this.get('author'),
         rating: this.get('rating'),
         content: this.get('content'),
+        // since reviews are in a one-to-many relationship with rental, we save a rental to the review property.
+        rental: this.get('rental'),
       };
       this.set('addNewReview', false);
       this.sendAction('saveReview', params);

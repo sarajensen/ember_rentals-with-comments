@@ -27,6 +27,21 @@ export default Ember.Route.extend({
       rental.destroyRecord();
       //this is saying to the router: Hey reload this page without the erased object from the model.
       this.transitionTo('index');
+    },
+    // this function saves a review to our DS, and it also saves a review by updating the rental object in our database with the review saved to it. We then have to go "back" to our current page with the new rental object in it.
+    saveReview(params) {
+      // Create a new review with the information from our parameters, save it to the database, and call it "newReview".
+      var newReview = this.store.createRecord('review', params);
+      // Refer to the rental in those parameters as "rental".
+      var rental = params.rental;
+      // Retrieve the list of reviews located in "rental", and add "newReview" to that list.
+      rental.get('reviews').addObject(newReview);
+      // Save "newReview", so it remembers what rental it belongs in. Wait until "newReview" has finished saving, then save "rental" too, so it remembers it contains "newReview".
+      newReview.save().then(function() {
+        return rental.save();
+      });
+      // Afterwards, take us to the page displaying details for "rental".
+      this.transitionTo('rental', rental);
     }
   }
 });
