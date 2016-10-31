@@ -50,6 +50,7 @@ export default Ember.Route.extend({
       this.transitionTo('rental', rental);
     },
     destroyReview(review) {
+      console.log("TEST");
       //destroyRecord is a pre-named ember funtion that instantly updates the info w/out the deleted record.
       review.destroyRecord();
       //this is saying to the router: Hey reload this page without the erased object from the model.

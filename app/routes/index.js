@@ -11,12 +11,17 @@ export default Ember.Route.extend({
       rentals: this.store.findAll('rental'),
       reviews: this.store.findAll('review'),
     });
+
   },
   actions: {
     saveRental3(params) {
+      console.log(params);
       var newRental = this.store.createRecord('rental', params);
       newRental.save();
       this.transitionTo('index');
+    },
+    callModel(model) {
+      console.log(model);
     },
   }
 });

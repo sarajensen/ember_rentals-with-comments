@@ -14,6 +14,7 @@ export default Ember.Component.extend({
         type: this.get('type'),
         image: this.get('image'),
         bedrooms: this.get('bedrooms'),
+        cost: parseInt(this.get('cost'))
       };
       this.set('addNewRental', false);
       // .sendAction names the function that will be defined in the template, {{new-rental saveRental2="saveRental3"}}.

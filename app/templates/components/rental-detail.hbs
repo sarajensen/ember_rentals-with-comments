@@ -4,7 +4,8 @@ Located in {{rental.city}}, this {{rental.bedrooms}} bedroom {{rental.type}} is 
 
 <h2>Reviews</h2>
 <ul>
-  {{#each rental.reviews as |review|}}
+  <!-- sortedReviews is a property of rental that we computed in this component js file, accessible to this component only (maybe also its child components) -->
+  {{#each sortedReviews as |review|}}
     {{review-tile review=review destroyReview="destroyReview"}}
   {{/each}}
 </ul>

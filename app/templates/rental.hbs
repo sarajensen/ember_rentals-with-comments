@@ -6,7 +6,7 @@
 
 <!-- This here rental.hbs route is rendering the rental-detail component and sending rental data to the component. For consistency, the rental-detail data will be called rental, even though it's gathered from model. -->
 <!-- destroyRental="destroyRental" comes from sendAction("detroyRental", rental) in rental-details.js. Sent actions from components are referenced in the templates they are rendered in, and then the corresponding route handler (index.js) must code the action that is indicated in the component for the action to execute.  -->
-{{rental-detail rental=model destroyRental="destroyRental" destroyRental="destroyReview"}}
+{{rental-detail rental=model destroyRental="destroyRental" destroyReview="destroyReview"}}
 
 <!-- New review component will show an Add Review button by default, and a form if that button is clicked. Save button in the form triggers action saveReview, which saves input, that then gets sent to index.js in its very own "saveReview" action. We're reviewing individual rentals, as rentals and reviews have a one-to-many relationship. So the review needs some rental data! passing rental data into the component allows us to save a rental as a property of review (e.g. rental: this.get('rental')) -->
 {{new-review saveReview="saveReview" rental=model}}

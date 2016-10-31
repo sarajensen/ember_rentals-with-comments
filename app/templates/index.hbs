@@ -1,4 +1,4 @@
-<!--This page is brought to you by the terminal command: ember g route index. Index.hbs is special in that does not require a route in router.js-->
+ <!--This page is brought to you by the terminal command: ember g route index. Index.hbs is special in that does not require a route in router.js-->
 
 <h1> Welcome to Super Rentals </h1>
 
@@ -10,7 +10,8 @@ We hope you find exactly what you're looking for in a place to stay.
   <!--1. Data must be available at the top level of the app, ie here. 2) Data is retrieved from Firebase in index.js. 3) We display data here using the for-each loop below. 4) 'Each' is an Ember Helper. 5) 'Each' loops through the model hook in our route handler, index.js, in which we call our rentals database.-->
   {{#each model.rentals as |rental|}}
     <!-- rental=rental: components don't have it's parents data by default, it must be passed in. are completely isolated from the model that holds all the information that needed to be sent to it.  Info must be passed in manually. rental(1) is the variable name for the data in the component and rental(2) represents data from the firebase model grabbed from the loop, |rental|.-->
-    {{rental-tile rental=rental}}
+    <!-- you can use custom helpers as normal, and you call them like components, but unlike components they do a thing, and you don't need two files to do that thing. -->
+    {{rental-popularity rental}} {{rental-tile rental=rental}} {{rental-cost rental}}
   {{/each}}
 </ul>
 
@@ -26,6 +27,7 @@ We hope you find exactly what you're looking for in a place to stay.
 </ul>
 
 <hr>
+<button {{action 'callModel' model.reviews.content}}>Call Model</button>
 
 {{#link-to 'about'}}About{{/link-to}} |
 {{#link-to 'contact'}}Click here to contact us.{{/link-to}}

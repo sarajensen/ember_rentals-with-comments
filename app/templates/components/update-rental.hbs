@@ -24,6 +24,11 @@
         <label for="image">Image URL</label>
         {{input value=image id="image" placeholder=rental.image}}
       </div>
+      <div class="form-group">
+        <label for="cost">Cost per night</label>
+        {{input value=cost id="cost" placeholder=rental.cost}}
+      </div>
+
       <!-- action 'update' is bound to the button, and represents the update action in update-rental.js and the rental info passed in as an argument to update. Update is HERE to be made available for the template (index.hbs) to grab and send to the route handler index.js to save the updated info to the database. And set updateRentalForm to false. -->
       <button {{action 'update' rental}}>Save</button>
     </form>

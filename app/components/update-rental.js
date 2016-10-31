@@ -17,6 +17,7 @@ export default Ember.Component.extend({
         type: this.get('type'),
         image: this.get('image'),
         bedrooms: this.get('bedrooms'),
+        cost: parseInt(this.get('cost'))
       };
       // toggles form off
       this.set('updateRentalForm', false);
