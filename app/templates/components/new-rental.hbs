@@ -32,6 +32,16 @@
       {{input value=cost id="cost"}}
     </div>
 
+    <div class="form-group">
+      <label for="latitude">Latitude</label>
+      {{input value=latitude id="latitude"}}
+    </div>
+
+    <div class="form-group">
+      <label for="longitude">Longitude</label>
+      {{input value=longitude id="longitude"}}
+    </div>
+
     <!-- saveRental1 is a variable that indicates to our new-rental.js file that we need to define an action that will .sendAction to our template, index.hbs. saveRental1 is a function that saves the form inputs in an object format into a var called params. In a .sendAction to our template, we then define a new function name called saveRental2, and send the argument params to our template, index.hbs. -->
     <button {{action 'saveRental1'}}>Save</button>
   </form>

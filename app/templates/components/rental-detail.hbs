@@ -9,5 +9,10 @@ Located in {{rental.city}}, this {{rental.bedrooms}} bedroom {{rental.type}} is 
     {{review-tile review=review destroyReview="destroyReview"}}
   {{/each}}
 </ul>
+
+<div>
+  <h3>Map of {{rental.owner}}'s {{rental.type}}</h3>
+  {{google-map rental=rental}}
+</div>
 <!-- this button goes OUT of the conditional statement.  This button gets the action helper named DELETE which gets attached to the rental object information. -->
 <button {{action 'delete' rental}}>Delete</button>
